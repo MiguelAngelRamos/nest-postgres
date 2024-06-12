@@ -40,7 +40,7 @@ $ npm install joi
 ## Migrations
 
 ```bash
-$ npm run typeorm -- migration:generate -d ./src/data-source.ts -n InitialMigration
+$ npm run typeorm -- migration:generate -d ./data-source.ts ./src/migration/InitialMigration
 ```
 ## Running the app
 
