@@ -34,6 +34,7 @@ $ npm install @nestjs/typeorm typeorm pg
 $ npm install dotenv ts-node
 $ npm install @nestjs/config 
 $ npm install class-validator class-transformer
+$ npm install joi
 ```
 
 ## Running the app
