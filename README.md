@@ -37,6 +37,11 @@ $ npm install class-validator class-transformer
 $ npm install joi
 ```
 
+## Migrations
+
+```bash
+$ npm run typeorm -- migration:generate -d ./src/data-source.ts -n InitialMigration
+```
 ## Running the app
 
 ```bash

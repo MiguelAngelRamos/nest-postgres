@@ -1,4 +1,4 @@
-import { DataSource } from 'typeorm';
+import { DataSource } from "typeorm";
 import * as dotenv from 'dotenv';
 import { join } from 'path';
 
@@ -11,7 +11,7 @@ const dataSource = new DataSource({
   username: process.env.DATABASE_USERNAME,
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE_NAME,
-  entities: [join(__dirname, '**', '*.entity.{ts,js}')],
+  entities: [join(__dirname, '**', '*.entity{ts,js}')],
   migrations: [join(__dirname, 'migration', '*.{ts,js}')],
   synchronize: true,
   ssl: {
@@ -20,3 +20,4 @@ const dataSource = new DataSource({
 });
 
 export default dataSource;
+
