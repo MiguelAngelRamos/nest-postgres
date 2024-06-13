@@ -42,6 +42,13 @@ $ npm install joi
 ```bash
 $ npm run typeorm -- migration:generate -d ./data-source.ts ./src/migration/InitialMigration
 ```
+
+## Documentacion Swagger
+
+```bash
+npm install --save @nestjs/swagger swagger-ui-express
+
+```
 ## Running the app
 
 ```bash
