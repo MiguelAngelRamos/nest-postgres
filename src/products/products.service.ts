@@ -4,6 +4,7 @@ import { Product } from './entities/product.entity';
 import { Repository } from 'typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
 import { Observable, from } from 'rxjs';
+import { UpdateProductDto } from './dto/update-product.dto';
 
 @Injectable()
 export class ProductsService {
@@ -17,19 +18,19 @@ export class ProductsService {
     return from(this.productRepository.save(product));
   }
 
-  findAll() {
-
+  findAll(): Observable<Product[]> {
+    return from(this.productRepository.find())
   }
 
-  findOne(){
-
+  findOne(id: number):Observable<Product>{
+    return from(this.productRepository.findOneBy({id}))
   }
 
-  update() {
-
+  update(id: number, updateProductDto: UpdateProductDto):Observable<any> {
+    return from(this.productRepository.update(id, {...updateProductDto}))
   }
 
-  remove() {
-
+  remove(id: number): Observable<any> {
+    return from(this.productRepository.delete(id));
   }
 }
