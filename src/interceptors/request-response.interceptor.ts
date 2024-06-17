@@ -1,5 +1,5 @@
 import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from "@nestjs/common";
-import { Observable } from "rxjs";
+import { Observable, tap } from "rxjs";
 // Gestion de archivos
 import * as fs from 'fs/promises'; // Es para operaciones de archivos asincronas
 import * as path from "path";
@@ -62,7 +62,19 @@ export class RequestResponseInterceptor implements NestInterceptor {
     return next
         .handle()
         .pipe(
-          
+          tap(() => {
+            const response = context.switchToHttp().getRequest();
+            const statusCode = response.statusCode;
+            const logResponseMessage = `Outgoing Response: ${statusCode} ${method} ${url} - ${Date.now() - now}ms\n`;
+
+            //* Agregar los logs de la respuesta al archivo de logs
+            try {
+              fs.appendFile(this.logPath, logResponseMessage);
+              console.log('Response log message written to file');
+            } catch (error) {
+              console.error(`Error writing response log message to file: ${error}`);
+            }
+          })
         )
   }
 }
